@@ -6,6 +6,7 @@
 >Bottle是一个简单高效的遵循WSGI的微型python Web框架。说微型，是因为它只有一个文件，除Python标准库外，它不依赖于任何第三方模块，所以部署于 linux 环境中不需要再安装第三方库，只需要将 py 文件复制到程序中引用即可。便于安装、实现简单，使用python 轻量级的 web 开发框架 `bottle`，即可快速实现需求。
 
 # 一、系统架构
+待补充
 
 # 二、基本需求梳理
 >虽然说初始需求只要求尽快的满足数据量统计趋势图即可，但是为提高现场环境实用性，决定增加数据量异常预警。
@@ -44,8 +45,6 @@
   `es_agent` 爬取 Elasticsearch 统计页面数据
 
 
-## 抓取
-
 # 四、效果展示
 ### 各模块数据量统计图
 ![数据总条数.png](https://github.com/BullFrogLT/stat/blob/master/pic/数据总条数.png "数据总条数.png")
@@ -54,7 +53,7 @@
 ![interds数据量统计.png](https://github.com/BullFrogLT/stat/blob/master/pic/interds数据量统计.png "interds数据量统计.png")
 
 ### tornado数据量统计图
-![tornado数据量统计.png](https://github.com/BullFrogLT/stat/blob/master/pic/interds数据量统计.png "tornado数据量统计.png")
+![tornado数据量统计.png](https://github.com/BullFrogLT/stat/blob/master/pic/tornado数据量统计.png "tornado数据量统计.png")
 
 ### topic数据量统计图
 ![topic数据量统计.png](https://github.com/BullFrogLT/stat/blob/master/pic/topic数据量统计.png "topic数据量统计.png")

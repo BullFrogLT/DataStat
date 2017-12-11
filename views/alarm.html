@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>This is Alarm page</title>
+    <script src="/assets/js/echarts.min.js"></script>
+</head>
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/css/analyse.css">
+
+<body>
+    <style type="text/css">
+        a {
+            color:#EFF5EF;
+            float:right;
+            background-color: #588cef;
+            line-height:2;
+            font-size:18px;
+            margin-top:5px;
+            margin-right:20px;
+        }
+    </style>
+    <a href="../index/" target="_blank">点击查看数据量统计图</a>
+
+    <div id="div1">
+        <h1 style="text-align:center; font-weight:bold">NS平台预警</h1>
+        <br/><br/>
+        <!-- 定义预警表结构 -->
+
+        <table align="center" border="1">
+            <tr>
+                <th>预警标号</th>
+                <th>预警项描述</th>
+                <th>预警提示</th>
+                <th>预警级别</th>
+            </tr>
+        <div id="ERROR">
+        <!-- 1001:监测interds全部接受数据量是否为0 -->
+        % if INTERDS_READNUM_TODAY_ALARM:
+            <tr>
+                <td align="center">
+                    1001
+                </td>
+                <td>
+                    监测interds全部接受数据量是否为0
+                </td>
+                <td>
+                    今日interds接入数据量为0
+                </td>
+                <td style="text-align:center; background-color:rgb(186, 13, 247)">
+                    非常严重
+                </td>
+            </tr>
+        % end
+        <!-- end -->
+        <!-- 1002:监测interds正确处理的数据量是否为0 -->
+        % if INTERDS_RESULTNUM_TODAY_ALARM:
+            <tr>
+                <td align="center">
+                    1002
+                </td>
+                <td>
+                    监测interds正确处理的数据量是否为0
+                </td>
+                <td>
+                    今日interds解析数据全部失败
+                </td>
+                <td style="text-align:center; background-color:rgb(186, 13, 247)">
+                    非常严重
+                </td>
+            </tr>
+        % end
+        <!-- 1003:监测tornado接受总量是否为0 -->
+        % if TORNADO_RECTOTL_TODAY_ALARM:
+            <tr>
+                <td align="center">
+                    1003
+                </td>
+                <td>
+                    监测tornado接受总量是否为0
+                </td>
+                <td>
+                    今日TORNADO接收到数据量为0
+                </td>
+                <td style="text-align:center; background-color:rgb(186, 13, 247)">
+                    非常严重
+                </td>
+            </tr>
+        % end
+        <!-- 1004:监测tornado业务输出KFK成功条数是否为0 -->
+        % if TORNADO_TOKFKSUC_TODAY_ALARM:
+            <tr>
+                <td align="center">
+                    1004
+                </td>
+                <td>
+                    监测tornado业务输出KFK成功条数是否为0
+                </td>
+                <td>
+                    今日通用输出处理KFAKA业务相关数据为0
+                </td>
+                <td style="text-align:center; background-color:rgb(186, 13, 247)">
+                    非常严重
+                </td>
+            </tr>
+        % end
+        <!-- 1005:监测topic当日数据量是否为0 -->
+        % if TOPIC_TABLENUM_TODAY_ALARM:
+            <tr>
+                <td align="center">
+                    1005
+                </td>
+                <td>
+                    监测topic当日数据量是否为0
+                </td>
+                <td>
+                    今日topic中无数据
+                </td>
+                <td style="text-align:center; background-color:rgb(186, 13, 247)">
+                    非常严重
+                </td>
+            </tr>
+        % end
+        <!-- 1006:监测crius处理成功数据量是否为0 -->
+        % if CRIUS_SUCCESSCOUNT_TODAY_ALARM:
+            <tr>
+                <td align="center">
+                    1006
+                </td>
+                <td>
+                    监测crius处理成功数据量是否为0
+                </td>
+                <td>
+                    今日crius没有接受到数据，或者处理数据全部失败
+                </td>
+                <td style="text-align:center; background-color:rgb(186, 13, 247)">
+                    非常严重
+                </td>
+            </tr>
+        % end
+        <!-- # 1007:监测ares处理成功数据量是否为0 -->
+        % if ARES_TOTALCOUNT_TODAY_ALARM:
+            <tr>
+                <td align="center">
+                    1007
+                </td>
+                <td>
+                    监测ares处理成功数据量是否为0
+                </td>
+                <td>
+                    今日ares没有处理数据，或者处理数据全部失败
+                </td>
+                <td style="text-align:center; background-color:rgb(186, 13, 247)">
+                    非常严重
+                </td>
+            </tr>
+        % end
+        <!-- # 1008:监测ES数据量是否为0 -->
+        % if ES_TABLENUM_TODAY_ALARM:
+            <tr>
+                <td align="center">
+                    1008
+                </td>
+                <td>
+                    监测ES数据量是否为0
+                </td>
+                <td>
+                    ES中无今日数据
+                </td>
+                <td style="text-align:center; background-color:rgb(186, 13, 247)">
+                    非常严重
+                </td>
+            </tr>
+        % end
+        <!-- # 3001:INTERDS解析_成功输出数据量-TORNADO_接受总量!=0 -->
+        % if TORNADO_3001_ALARM:
+            <tr>
+                <td align="center">
+                    3001
+                </td>
+                <td>
+                    INTERDS解析_成功输出数据量-TORNADO_接受总量!=0
+                </td>
+                <td>
+                    DS与TORNADO交互环节存在异常，或者DS发送成功数据量大于TORNADO接受数据量
+                </td>
+                <td style="text-align:center; background-color:rgb(247, 16, 40)">
+                    严重
+                </td>
+            </tr>
+        % end
+        <!-- # 4001:TORNADO_业务输出KAFKA成功条数-TOPIC数据量统计!=0 -->
+        % if TOPIC_4001_ALARM:
+            <tr>
+                <td align="center">
+                    4001
+                </td>
+                <td>
+                    TORNADO_业务输出KAFKA成功条数-TOPIC数据量统计!=0
+                </td>
+                <td>
+                    TORNADO与KAFKA交互环节存在异常,或者TORNADO写KAFKA成功数据量大于topic中数据量
+                </td>
+                <td style="text-align:center; background-color:rgb(247, 16, 40)">
+                    严重
+                </td>
+            </tr>
+        % end
+        <!-- # 2001:INTERDS解析,总共丢弃的数据量/接收数据量>5% -->
+        % if INTERDS_2001_ALARM:
+            <tr>
+                <td align="center">
+                    2001
+                </td>
+                <td>
+                    INTERDS解析,总共丢弃的数据量/接收数据量>5%
+                </td>
+                <td>
+                    interds解析数据存在大量失败
+                </td>
+                <td style="text-align:center; background-color:rgb(253, 255, 79)">
+                    一般
+                </td>
+            </tr>
+        % end
+        <!-- # 2002:INTERDS解析,输出失败/正确处理>5% -->
+        % if INTERDS_2002_ALARM:
+            <tr>
+                <td align="center">
+                    2002
+                </td>
+                <td>
+                    INTERDS解析,输出失败/正确处理>5%
+                </td>
+                <td>
+                    DS输出数据存在大量失败
+                </td>
+                <td style="text-align:center; background-color:rgb(253, 255, 79)">
+                    一般
+                </td>
+            </tr>
+        % end
+        <!-- # 2003:INTERDS解析,丢弃数据量/接收数据量>5% -->
+        % if INTERDS_2003_ALARM:
+            <tr>
+                <td align="center">
+                    2003
+                </td>
+                <td>
+                    INTERDS解析,丢弃数据量/接收数据量>5%
+                </td>
+                <td>
+                    DS输出数据存在大量丢弃
+                </td>
+                <td style="text-align:center; background-color:rgb(253, 255, 79)">
+                    一般
+                </td>
+            </tr>
+        % end
+        <!-- # 3002:TORNADO解析失败处理量/接收量>5% -->
+        % if INTERDS_2003_ALARM:
+            <tr>
+                <td align="center">
+                    3002
+                </td>
+                <td>
+                    TORNADO解析失败处理总量/接收总量>5%
+                </td>
+                <td>
+                    TORNADO处理数据存在大量失败
+                </td>
+                <td style="text-align:center; background-color:rgb(253, 255, 79)">
+                    一般
+                </td>
+            </tr>
+        % end
+        <!-- # 3003:KFK输出失败/KFK业务处理>5% -->
+        % if TORNADO_3003_ALARM:
+            <tr>
+                <td align="center">
+                    3003
+                </td>
+                <td>
+                    KFK输出失败/KFK业务处理>5%
+                </td>
+                <td>
+                    TORNADO输出KAFKA存在大量失败
+                </td>
+                <td style="text-align:center; background-color:rgb(253, 255, 79)">
+                    一般
+                </td>
+            </tr>
+        % end
+        <!-- # 3004:Tornado输出kafka数据量/Tornado接收数据量<90% -->
+        % if TORNADO_3004_ALARM:
+            <tr>
+                <td align="center">
+                    3004
+                </td>
+                <td>
+                    Tornado输出kafka数据量/Tornado接收数据量<90%
+                </td>
+                <td>
+                    TORNADO处理过程中非法数据较多，请检查配置
+                </td>
+                <td style="text-align:center; background-color:rgb(253, 255, 79)">
+                    一般
+                </td>
+            </tr>
+        % end
+        <!-- # 4002:|(昨天数据量-近七天平均数据量)|/近七天平均数据量>5% -->
+        % if TOPIC_4002_ALARM:
+            <tr>
+                <td align="center">
+                    4002
+                </td>
+                <td>
+                    |(昨天数据量-近七天平均数据量)|/近七天平均数据量>5%
+                </td>
+                <td>
+                    昨日入topic数据量低于近七日平均数据量的5%
+                </td>
+                <td style="text-align:center; background-color:rgb(253, 255, 79)">
+                    一般
+                </td>
+            </tr>
+        % end
+        <!-- # 6001:ARES当天处理数据总量 < (TOPIC数据量统计 * 0.05) -->
+        % if ARES_6001_ALARM:
+            <tr>
+                <td align="center">
+                    6001
+                </td>
+                <td>
+                    ARES当天处理数据总量 < (TOPIC数据量统计 * 0.05)
+                </td>
+                <td>
+                    ARES处理数据量小于当天TOPIC数据量的5%
+                </td>
+                <td style="text-align:center; background-color:rgb(253, 255, 79)">
+                    一般
+                </td>
+            </tr>
+        % end
+        <!-- # 6002:处理失败数据量/处理数据总量 > 5% -->
+        % if ARES_6002_ALARM:
+            <tr>
+                <td align="center">
+                    6002
+                </td>
+                <td>
+                    处理失败数据量/处理数据总量 > 5%
+                </td>
+                <td>
+                    ares处理数据存在大量失败
+                </td>
+                <td style="text-align:center; background-color:rgb(253, 255, 79)">
+                    一般
+                </td>
+            </tr>
+        % end
+        </div>
+
+        <!-- end -->
+
+
+        </table>
+
+    </div>
+
+
+
+</body>
+</html>

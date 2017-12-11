@@ -1,0 +1,1 @@
+2 * * * * root source /etc/profile && cd /home/NebulaSolarStat/sh && sh start_interds_agent.sh

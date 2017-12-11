@@ -1,0 +1,1 @@
+58 * * * * root source /etc/profile && cd /home/NebulaSolarStat/sh && sh start_es_agent.sh

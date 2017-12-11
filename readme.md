@@ -1,0 +1,59 @@
+
+NebulaSolarStat : NS平台数据流统计程序
+NebulaSolarStat-1.1 ---------------------------------------2017-11-18
+1.新增：ares_stat_agent_type.py协议统计模块
+2.新增：interds_stat_agent_type.py协议统计模块
+3.新增：tornado_stat_agent_type.py协议统计模块
+4.新增：protocol统计界面
+5.新增：三张协议统计表
+6.新增：interds、tornado、topic、crius、ares元数据
+
+NebulaSolarStat-1.1 ---------------------------------------2017-11-15
+1.新增：FAQ、安装文档
+
+NebulaSolarStat-1.1 ---------------------------------------2017-10-26
+1.新增：安装时会在主节点自动安装cx_Oracle库
+2.修改：ares_stat_agent.py可以处理多个log日志文件
+3.修改：es_stat_agent.py过滤close状态的ES表
+4.优化：复制crontab文件方式修改为echo
+5.优化：预警界面放在首页，新增“点击查看数据量统计图”按钮，跳转到“数据量统计”界面
+
+NebulaSolarStat-1.1 ---------------------------------------2017-09-21
+1.新增数据库历史数据删除机制，只保留近30天数据，配置项为ns.ini文件中的sqlite3savedata
+2.tornado统计界面变动，导致NS数据流统计工具需要做调整，修改代码，抓取新页面中信息
+3.修改DSRunStat工具问题，start.sh脚本添加环境变量
+4.修改预警程序隔天时间统计不准问题
+5.1006预警模块统计sql语句TABLE_CATEGORY匹配当天数据
+6.3001预警模块新增当数据量为0时也给出错误信息
+
+
+NebulaSolarStat-1.1 ---------------------------------------2017-09-06
+1.新增预警功能
+    预警测试用例放在conf目录中，以便参考
+
+
+#release-notes:
+NebulaSolarStat-1.0 ---------------------------------------2017-09-06
+安装/启动：
+1.将NebulaSolarStat-1.0.tar.gz包拷贝在/home目录下
+2.选一台服务器做为该工具的主节点，主节点到/home/NebulaSolarStat/conf/ns.ini文件中所有配置的IP需要无密码登陆
+3.执行cd /home/NebulaSolarStat;sh install.sh开始安装
+4.执行nohup /usr/bin/python ns_stat_server.py &   命令启动服务端
+5.浏览器中打开http://10.0.18.33:8999 即可查看NS数据流
+
+说明:
+1.crius、ares统计程序可以都部署在es服务器中
+2.一共有6个统计程序，install.sh脚本会自动完成top_stat_agent、ares_stat_agent、interds_stat_agent的安装，其他脚本可以安装在任意服务器：
+interds统计程序：interds_stat_agent.py       必须安装在inter_ds程序的服务器中
+topic统计程序:  top_stat_agent.py            必须安装在hm节点，程序需要执行/home/nebula/NebulaPF_DataCenter_Crius/tool/staticAllKafkaLines.sh default true命令
+crius统计程序：  crius_stat_agent.py         必须安装在可以连接上bigdata数据库的服务器中，程序需要从bigdata库中查询数据
+ares统计程序：   ares_stat_agent.py          必须安装在ARES主节点服务器中（默认ES主节点），程序需要读取/home/nebula/NebulaPF_DataCenter_Ares/log/mstatistic.log日志
+tornado统计程序：tornado_stat_agent.py       安装在任意一台机器，可以连接上 http://{RTPMASTER}/StreamCenter/ 即可
+es统计程序：     es_stat_agent.py            可以安装在任意一台机器，可以连接上 http://{ESIP}:9200_cat/indices 即可
+5.将crond目录下对应的启动脚本拷贝到服务器的/etc/cron.d目录下，重启crond服务
+6.crius程序由于会将数据输出到hdfs和hbase中，根据各产品配置项的不同，可能只输出hdfs、只输出hbase、或者一份数据同时输出到hdfs和hbase，所以会造成统计值不准确，需要根据各产品的业务场景做统计调整
+7.interds只统计xxx数据量，现场除了inter_ds还有其他数据接入的来源
+8.meta_data.json 配置参考
+数据库中 topic 表名查看语句：select * from ns_stat_top where TABLENAME like '%LGZSRYXX%' ---->  规则为"TOPIC": "LGZSRYXX"  ---->  脚本查询sql会自动拼接 LGZSRYXX-20171118
+数据库中 crius 表名查看语句：select * from ns_stat_crius where TABLE_CATEGORY like '%LGZSRYXX%' ---->  规则为"CRIUS": "LGZSRYXX"  ---->  脚本查询sql会自动拼接 LGZSRYXX-20171118
+数据库中 ares 表名查看语句：select * from ns_stat_ares_type  where TABLECATEGORY = 'NB_APP_SHM_LGZSRYXX' ---->  规则为"ARES": "NB_APP_SHM_LGZSRYXX"  ---->   脚本查询sql精确查询NB_APP_SHM_LGZSRYXX表

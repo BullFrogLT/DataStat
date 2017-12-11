@@ -1,0 +1,1 @@
+0 1 * * * root source /etc/profile && cd /home/NebulaSolarStat/ && /usr/bin/python delOverdueData.py

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/css/analyse.css">
+<body>
+    <div id="div1">
+    % for i in PRO:
+     <table border="2" align="center">
+        <h2 style="text-align:center; font-weight:bold">{{ i }}</h2>
+        <tr>
+            <th></th>
+            <th style="background-color:rgb(186, 13, 247)">interds_IN</th>
+            <th style="background-color:rgb(186, 13, 247)">interds_OUTSUCC</th>
+            <th style="background-color:rgba(250,200,10,100)">tornado_IN</th>
+            <th style="background-color:rgba(250,200,10,100)">tornado_OUTSUC</th>
+            <th style="background-color:rgba(1,206,200,100)">topic</th>
+            <th style="background-color:rgba(1,206,16,100)">crius_SUC</th>
+            <th style="background-color:rgba(1,206,16,100)">crius_FAILED</th>
+            <th style="background-color:rgba(186,100,20,247)">ares_IN</th>
+            <th style="background-color:rgba(186,100,20,247)">ares_SUC</th>
+        </tr>
+        <tr>
+
+            <!-- 日期排序 -->
+            % SORTDAY = []
+            % for s in PRO[i]:
+                % SORTDAY.append(s)
+                % SORTDAY.sort(reverse=True)
+            % end
+
+            % for item in SORTDAY:
+
+                <td align="center">{{item}}</td>
+                % for data in PRO[i][item]:
+                    <td align="right">{{ data }}</td>
+            % end
+        </tr>
+    %end
+    </table>
+
+
+    <br/><br/>
+    </div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 
 NebulaSolarStat : NS平台数据流统计程序
-NebulaSolarStat-1.1 ---------------------------------------2017-11-18
+NebulaSolarStat-1.1 ---------------------------------------2017-9-30
 1.新增：ares_stat_agent_type.py协议统计模块
 2.新增：interds_stat_agent_type.py协议统计模块
 3.新增：tornado_stat_agent_type.py协议统计模块
@@ -8,10 +8,10 @@ NebulaSolarStat-1.1 ---------------------------------------2017-11-18
 5.新增：三张协议统计表
 6.新增：interds、tornado、topic、crius、ares元数据
 
-NebulaSolarStat-1.1 ---------------------------------------2017-11-15
+NebulaSolarStat-1.1 ---------------------------------------2017-9-27
 1.新增：FAQ、安装文档
 
-NebulaSolarStat-1.1 ---------------------------------------2017-10-26
+NebulaSolarStat-1.1 ---------------------------------------2017-9-26
 1.新增：安装时会在主节点自动安装cx_Oracle库
 2.修改：ares_stat_agent.py可以处理多个log日志文件
 3.修改：es_stat_agent.py过滤close状态的ES表

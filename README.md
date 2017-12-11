@@ -47,15 +47,40 @@
 ## 抓取
 
 # 四、效果展示
+### 各模块数据量统计图
+![数据总条数.png](https://github.com/BullFrogLT/stat/blob/master/pic/数据总条数.png "数据总条数.png")
 
+### interds数据量统计图
+![interds数据量统计.png](https://github.com/BullFrogLT/stat/blob/master/pic/interds数据量统计.png "interds数据量统计.png")
 
+### tornado数据量统计图
+![tornado数据量统计.png](https://github.com/BullFrogLT/stat/blob/master/pic/interds数据量统计.png "tornado数据量统计.png")
+
+### topic数据量统计图
+![topic数据量统计.png](https://github.com/BullFrogLT/stat/blob/master/pic/topic数据量统计.png "topic数据量统计.png")
+
+### crius数据量统计图
+![crius数据量统计.png](https://github.com/BullFrogLT/stat/blob/master/pic/topic数据量统计.png "crius数据量统计.png")
+
+### ares数据量统计图
+![ares数据量统计.png](https://github.com/BullFrogLT/stat/blob/master/pic/ares数据量统计.png "ares数据量统计.png")
+
+### elasticsearch数据量统计图
+![elasticsearch数据量统计.png](https://github.com/BullFrogLT/stat/blob/master/pic/es数据量统计.png "es数据量统计.png")
+
+### 按协议统计图
+![按协议统计.png](https://github.com/BullFrogLT/stat/blob/master/pic/按协议统计.png "按协议统计.png")
+
+### 数据量异常预警界面
+![预警界面.png](https://github.com/BullFrogLT/stat/blob/master/pic/预警界面.png "预警界面.png")
+
+### 预警规则
+![预警规则.png](https://github.com/BullFrogLT/stat/blob/master/pic/预警规则.png "预警规则.png")
 
 # 五、部分代码演示
-init_db.py 创建统计表
-![init_db.py](https://github.com/BullFrogLT/stat/blob/master/pic/ares数据量统计.png "initdb.png")
+### init_db.py 创建统计表
+![init_db.py](https://github.com/BullFrogLT/stat/blob/master/pic/创建数据库代码.png "initdb.png")
 
-install.sh 安装脚本
 
-ns_stat_server 中的预警分析模块
 
 

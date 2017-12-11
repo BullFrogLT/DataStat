@@ -60,7 +60,7 @@
 ![topic数据量统计.png](https://github.com/BullFrogLT/stat/blob/master/pic/topic数据量统计.png "topic数据量统计.png")
 
 ### crius数据量统计图
-![crius数据量统计.png](https://github.com/BullFrogLT/stat/blob/master/pic/topic数据量统计.png "crius数据量统计.png")
+![crius数据量统计.png](https://github.com/BullFrogLT/stat/blob/master/pic/crius数据量统计.png "crius数据量统计.png")
 
 ### ares数据量统计图
 ![ares数据量统计.png](https://github.com/BullFrogLT/stat/blob/master/pic/ares数据量统计.png "ares数据量统计.png")
